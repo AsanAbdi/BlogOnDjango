@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="alert alert-danger" role="alert">
+        Are you sure that you want to delete the user "{{user.name}}???"
+    </div>
+    <form method='post' action="{{user.get_delet_url}}">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Delete</button>
+    </form>
+    <a href="{{user.get_absolute_url}}">Cancel</a>
+{% endblock %}

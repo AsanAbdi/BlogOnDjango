@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <form action="categoriesCreate" method="post">
+        {% csrf_token %}
+        {{form.title.label}}
+        {{form.title}}
+        {% if form.errors %}
+        <div class="alert alert-danger" role="alert">
+            {{form.errors}}
+        </div>
+        {% endif %}
+        <button class="btn btn-info" type="submit">Submit</button>
+    </form>
+
+{% endblock %}

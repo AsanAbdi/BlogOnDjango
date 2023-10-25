@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    Are you sure that you want to logout?
+    <form action="usersLogout" method="post">
+        {% csrf_token %}
+        <button class="btn btn-danger" type="submit">Logout</button>
+    </form>
+    <button class="btn btn-info"><a href="{{user.get_absolute_url}}">Cancel</a></button>
+
+{% endblock %}

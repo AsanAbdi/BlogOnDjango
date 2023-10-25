@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h4>
+    Title:
+    {{post.title}}  <br>
+    Body:
+    {{post.body}} <br>
+    Publication Date:
+    {{post.date_pub}} <br>
+    User:
+    <a href="{{post.user.get_absolute_url}}">{{ post.user.name }}</a> <br>
+    Category:
+    <a href="{{post.category.get_absolute_url}}">{{ post.category.title }}</a> <br>
+    Photo:
+    <img src="{{post.photo.url}}" alt="Post Photo" style="width: 300px"> <br>
+    Likes:{{post.likes.all.count}} <br>
+    {% if post.postcomments %}
+    Comments:
+    {% for comment in post.postcomments.all %}
+        <div class="alert alert-info" role="info">
+            {{comment.user}} <br>
+            {{comment.text}}
+        </div>
+    {% endfor %}
+    {% endif %}
+    </h4>
+
+    <button class="btn btn-info"><a href="{% url 'posts_like_url' id=post.id%}" style="color:white;">Like</a></button>
+    <button class="btn btn-info"><a href="{% url 'comments_create_url' postid=post.id %}">Comment</a></button>
+    <button class="btn btn-info"><a href="{{post.get_update_url}}">Update</a></button>
+    <button class="btn btn-danger"><a href="{{post.get_delete_url}}" style="color:white;">Delete</a></button>
+{% endblock %}

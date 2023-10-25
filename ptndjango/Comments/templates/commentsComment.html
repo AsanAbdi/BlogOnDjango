@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    Text:
+    {{comment.text}} <br>
+    Author:
+    <a href="{{comment.user.get_absolute_url}}">{{comment.user.name}}</a> <br>
+    Under Post:
+    <a href="{{comment.post.get_absolute_url}}">{{comment.post.title|title}} </a> <br>
+    
+    <a href="{{comment.get_update_url}}"><button class="btn btn-info">Update</button></a>
+{% endblock %}

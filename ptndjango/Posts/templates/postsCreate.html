@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <form method="post" action="postsCreate" enctype="multipart/form-data">
+      {% csrf_token %}
+      {% for field in form %}
+        {% if field.label != 'User' %}
+          {{ field.label }}
+          {{ field }}
+        {% endif %}
+      {% endfor %}
+      {% if form.errors %}
+        <div class="alert alert-danger" role="alert">
+            {{form.errors}}
+        </div>
+      {% endif %}
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <a href="{% url 'users_home_url' %}"><button class="btn btn-danger mt-10">Go Home</button></a>
+{% endblock %}

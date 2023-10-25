@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<buttton class="btn btn-primary">
+    <a href="{{category.get_update_url}}">Update</a>
+</buttton>
+<buttton class="btn btn-danger">
+    <a href="{{category.get_delete_url}}">Delete</a>
+</buttton>
+    <div class="alert alert-info" role="alert">
+        <h2>
+            {{category.title|title}}
+        </h2>
+    </div>
+    {% for post in category.categoryposts.all %}
+        <div class="card mb-3" style="width:500px; margin:0 auto;">
+            <img src="{{ post.photo.url }}" class="card-img-top" alt="Post photo" style="width:250px; margin: 0 auto;">
+            <div class="card-body">
+            <h5 class="card-title"><a href="{{ post.get_absolute_url }}">{{post.title|title}}</a></h5>
+            <p class="card-text">{{post.body|truncatewords:20}}</p>
+            <p class="card-text"><small class="text-body-secondary">{{post.date_pub}}</small></p>
+            </div>
+        </div>
+    {% endfor %}
+
+{% endblock %}

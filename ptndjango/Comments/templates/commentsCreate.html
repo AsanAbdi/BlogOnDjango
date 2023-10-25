@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <form method="post" action="{% url 'comments_create_url' postid=post.id %}">
+      {% csrf_token %}
+      {% for field in form %}
+        {{field.label}}
+        {{field}}
+      {% endfor %}
+      {% if form.errors %}
+        <div class="alert alert-danger" role="alert">
+            {{form.errors}}
+        </div>
+      {% endif %}
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <a href="{% url 'users_home_url' %}"><button class="btn btn-danger mt-10">Go Home</button></a>
+{% endblock %}

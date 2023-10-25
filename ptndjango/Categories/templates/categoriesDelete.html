@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <form action="{{category.get_delete_url}}" method="post">
+        {% csrf_token %}
+        <div class="alert alert-danger" role="alert">
+            Are you sure you want to delete the Category "{{category.title|title}}"???
+        </div>
+        <button type="submit" class="btn btn-danger">Delete</button>
+        <a href="{{category.get_absolute_url}}">Cancel</a>
+    </form>
+
+{% endblock %}
